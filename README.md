@@ -1,6 +1,6 @@
 # 🎱 | Pingo
 Um sistema de Cartela de Bingo baseado nas falas do Professor Guto Pazetti.
-<img align="right" src="./oh-my-gaah-hero-everynyan.gif">
+<img style="height=100px" align="right" src="./oh-my-gaah-hero-everynyan.gif">
 <hr>
 
 <b>Este sistema foi feito puramente com Java, SpringBoot, TailwindCSS, HTMX e PostgreSQL.</b>

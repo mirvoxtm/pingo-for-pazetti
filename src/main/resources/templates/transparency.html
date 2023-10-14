@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <title>PINGO</title>
+</head>
+<body class="bg-zinc-900">
+   	
+   	<center>
+   	<h1 class="text-4xl p-5 font-extrabold text-slate-200">Todas as Entradas</h1>
+    <p class="text-md p-5 font-bold text-slate-200" id="listingAll" hx-get="/transparency/listAll" hx-trigger="load" hx-swap="none"></p>
+    <script>
+        document.body.addEventListener('htmx:afterOnLoad', function(event) {
+                if (event.detail.elt === document.getElementById('listingAll')) {
+                    var data = JSON.parse(event.detail.xhr.responseText);
+                    var strings = data.map(function(item) {
+                    return '<li style="list-style-type: none">' + item.strings + '</li>';
+                });
+                document.getElementById('listingAll').innerHTML = strings.join('');
+                }
+        });
+    </script>
+    
+   	<h1 class="text-4xl p-5 font-extrabold text-slate-200">Entrada Aleatória</h1>
+    <p class="text-md p-5 font-bold text-slate-200" id="findingRandom" hx-get="/transparency/findRandom" hx-trigger="load" hx-swap="none"></p>
+    <script>
+        document.body.addEventListener('htmx:afterOnLoad', function(event) {
+            if (event.detail.elt === document.getElementById('findingRandom')) {
+                var data = JSON.parse(event.detail.xhr.responseText);
+                var strings = data.strings;
+                document.getElementById('findingRandom').textContent = strings;
+            }
+        });
+    </script>
+
+    <h1 class="text-4xl p-5 font-extrabold text-slate-200">Dezesseis Selecionados</h1>
+    <p class="text-md p-5 font-bold text-slate-200" id="findingRandomSixteen" hx-get="/transparency/getRandom" hx-trigger="load" hx-swap="none"></p>
+    <script>
+        document.body.addEventListener('htmx:afterOnLoad', function(event) {
+                if (event.detail.elt === document.getElementById('findingRandomSixteen')) {
+                    var data = JSON.parse(event.detail.xhr.responseText);
+                    var strings = data.map(function(item) {
+                    return '<li style="list-style-type: none">' + item.strings + '</li>';
+                });
+                document.getElementById('findingRandomSixteen').innerHTML = strings.join('');
+                }
+        });
+    </script>
+	</center>
+	
+	<footer style="position: fixed; bottom: 0; left: 0;">
+        <center>
+            <div class="sticky bg-zinc-200 rounded-3xl p-3 m-5 drop-shadow-md hover:bg-zinc-300">
+               <a href="/"><b>🎱 Retornar ao Pingo</b></a>
+            </div>
+        </center>
+    </footer>
+	
+</body>
+</html>

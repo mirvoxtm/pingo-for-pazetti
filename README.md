@@ -6,11 +6,11 @@
 
 <hr>
 
-<b>Este sistema foi feito puramente com Java, SpringBoot, TailwindCSS, HTMX e PostgreSQL.</b>
+<b>Este sistema foi feito puramente com Java, SpringBoot (Maven), TailwindCSS, HTMX e PostgreSQL.</b>
 
 
 Você pode fazer ele funcionar localmente em seu computador alterando a classe `TestConfig.java` para popular o Banco de Dados com os dados de sua preferência.
-Também, deve-se alterar as `application.properties` para seus respectivos usos, caso queira usar o Banco em Memória H2, PostgreSQL ou até mesmo MySQL.
+Também, deve-se alterar as `application.properties` para seus respectivos usos, caso queira usar o Banco em Memória H2, PostgreSQL ou até mesmo MySQL. Você pode rodar a aplicação diretamente por uma IDE como Eclipse, ou empacotá-lo em um JAR.
 
 <hr>
 <b>Lista para futuras atualizações:</b>

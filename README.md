@@ -1,6 +1,7 @@
-# 🎱 | Pingo
+# 🎱 | PINGO
 <img width="220px" align="right" src="./oh-my-gaah-hero-everynyan.gif">
-<p align="left">Um sistema de Cartela de Bingo baseado nas falas do Professor Guto Pazetti.<br>Um projeto criado em um único dia, dedicado para eu me aprofundar em Full-Stack.</p>
+<p align="left">Um sistema de Cartela de Bingo baseado nas falas do Professor Guto Pazetti.<br>Um projeto criado em um único dia, dedicado para eu me aprofundar em Full-Stack.
+<br><br><b>PINGO está disponível para jogar em <a href="https://pingo-for-pazetti.onrender.com/">https://pingo-for-pazetti.onrender.com/</a></p></b>
 <br>
 
 <hr>

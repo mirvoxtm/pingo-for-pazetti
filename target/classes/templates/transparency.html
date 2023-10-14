@@ -8,29 +8,81 @@
     <script src="https://unpkg.com/htmx.org@1.6.1"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
+ 	<style>
+		
+		div {
+			cursor: default;
+		}
+		
+		p {
+			cursor: default;
+		}
+		
+		li {
+			cursor: default;
+		}
+		
+		#buttondiv {
+			cursor: pointer;
+		}
+		
+		#dialog {
+  		box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  		background-color: #fefefe;
+		}
+		
+		#overlay {
+  		position: fixed;
+  		top: 0;
+  		left: 0;
+ 		width: 100%;
+ 		height: 100%;
+ 		background-color: rgba(0, 0, 0, 0.7);
+ 		z-index: 1000;
+}
+		
+	</style>
 
     <title>PINGO</title>
 </head>
 <body class="bg-zinc-900">
    	
+   	<div id="overlay" style="display: none;" class="transition duration-300"></div>
+   	
    	<center>
-   	<h1 class="text-4xl p-5 font-extrabold text-slate-200">Todas as Entradas</h1>
-    <p class="text-md p-5 font-bold text-slate-200" id="listingAll" hx-get="/transparency/listAll" hx-trigger="load" hx-swap="none"></p>
-    <script>
-        document.body.addEventListener('htmx:afterOnLoad', function(event) {
-                if (event.detail.elt === document.getElementById('listingAll')) {
-                    var data = JSON.parse(event.detail.xhr.responseText);
-                    var strings = data.map(function(item) {
-                    return '<li style="list-style-type: none">' + item.strings + '</li>';
-                });
-                document.getElementById('listingAll').innerHTML = strings.join('');
-                }
-        });
-    </script>
-    
-   	<h1 class="text-4xl p-5 font-extrabold text-slate-200">Entrada Aleatória</h1>
-    <p class="text-md p-5 font-bold text-slate-200" id="findingRandom" hx-get="/transparency/findRandom" hx-trigger="load" hx-swap="none"></p>
-    <script>
+		      	
+   		<section class="sm:mx-[5%] md:mx-[30%]">
+   		<center>
+		<h1 class="text-2xl p-5 font-extrabold text-slate-200">TODAS AS ENTRADAS</h1>
+			   
+   		<div class="grid grid-cols-4 items-center justify-center gap-4" id="listAll" hx-get="/transparency/listAll" hx-trigger="load" hx-swap="none"> </div>
+    	<script>
+    	document.body.addEventListener('htmx:afterOnLoad', function(event) {
+        if (event.detail.elt === document.getElementById('listAll')) {
+            var data = JSON.parse(event.detail.xhr.responseText);
+            console.log(data);
+            
+            var strings = data.map(function(item) {
+				console.log(strings);
+				
+                return '<div class="aspect-square flex items-center drop-shadow-md justify-center bg-zinc-200 rounded-md transition duration-300 ease-in-out hover:bg-yellow-500 hover:text-slate-50">' + '<b>' + '<span class="m-1">' + item.strings + '</span>' + ' </b>' + '</div>';
+            });
+            document.querySelector('#listAll').innerHTML = strings.join('');
+            console.log(strings.join(''));
+        	}
+   		 });
+		</script>
+    	</div>
+    	</center>
+    	</section>
+    	    
+		<h1 class="text-2xl p-5 font-extrabold text-slate-200">ENTRADA ALEATÓRIA</h1>
+   	
+   	<section class="sm:mx-[5%] md:mx-[30%]">
+   	<center>
+    <div class="flex items-center drop-shadow-md justify-center bg-zinc-200 rounded-md transition duration-300 ease-in-out hover:bg-yellow-500 hover:text-slate-50">    
+    	<p class="p-4 text-md font-bold" id="findingRandom" hx-get="/transparency/findRandom" hx-trigger="load" hx-swap="none"></p>
+    	<script>
         document.body.addEventListener('htmx:afterOnLoad', function(event) {
             if (event.detail.elt === document.getElementById('findingRandom')) {
                 var data = JSON.parse(event.detail.xhr.responseText);
@@ -38,30 +90,81 @@
                 document.getElementById('findingRandom').textContent = strings;
             }
         });
-    </script>
+   	 	</script>
+ 	</div>
+ 	</center>
+ 	</section>
+ 	 	
+	<section class="sm:mx-[5%] md:mx-[30%]">
+   		<center>
+		<h1 class="text-2xl p-5 font-extrabold text-slate-200">DEZESSEIS SELECIONADOS</h1>
+			   
+   		<div class="grid grid-cols-4 items-center justify-center gap-4" id="findingRandomSixteen" hx-get="/transparency/getRandom" hx-trigger="load" hx-swap="none"> </div>
+		<script>
+    	document.body.addEventListener('htmx:afterOnLoad', function(event) {
+        if (event.detail.elt === document.getElementById('findingRandomSixteen')) {
+            var data = JSON.parse(event.detail.xhr.responseText);
+            console.log(data);
+            
+            var strings = data.map(function(item) {
+				console.log(strings);
+				
+                return '<div class="aspect-square flex items-center drop-shadow-md justify-center bg-zinc-200 rounded-md transition duration-300 ease-in-out hover:bg-yellow-500 hover:text-slate-50">' + '<b>' + '<span class="m-1">' + item.strings + '</span>' + ' </b>' + '</div>';
+            });
+            document.querySelector('#findingRandomSixteen').innerHTML = strings.join('');
+            console.log(strings.join(''));
+        	}
+   		 });
+		</script>
+	</section>
+    </center>
+	
+	<dialog id="dialog" class="bg-zinc-300 p-5 rounded-xl transition duration-300 focus:ring-transparent focus:ring-offset-0 outline-none hover:bg-yellow-300">
+		<CENTER>
+		<h1 class="text-xl p-5 font-extrabold text-slate-600">TRANSPARENCY</h1>
+		<hr>
+  		<p class="text-md p-5 font-bold text-slate-600">Esta página é dedicada à mostrar os métodos e API Rest utilizados no Backend!<br>Você pode ver eles mais à fundo no <a class="transition duration-300 hover:text-yellow-600" href="https://github.com/mirvoxtm/pingo-for-pazetti">Github.</a></p>
+		</CENTER>
+	</dialog>
 
-    <h1 class="text-4xl p-5 font-extrabold text-slate-200">Dezesseis Selecionados</h1>
-    <p class="text-md p-5 font-bold text-slate-200" id="findingRandomSixteen" hx-get="/transparency/getRandom" hx-trigger="load" hx-swap="none"></p>
-    <script>
-        document.body.addEventListener('htmx:afterOnLoad', function(event) {
-                if (event.detail.elt === document.getElementById('findingRandomSixteen')) {
-                    var data = JSON.parse(event.detail.xhr.responseText);
-                    var strings = data.map(function(item) {
-                    return '<li style="list-style-type: none">' + item.strings + '</li>';
-                });
-                document.getElementById('findingRandomSixteen').innerHTML = strings.join('');
-                }
-        });
-    </script>
-	</center>
+	<div id="overlay" style="display: none;"></div>
+
+	<footer style="position: fixed; bottom: 0; right: 0;">
+ 		 <center>
+   			 <div id="buttondiv" class="sticky bg-zinc-200 rounded-3xl p-3 m-5 drop-shadow-md transition duration-300 ease-in-out hover:bg-yellow-500 hover:text-slate-50">
+      		 <b>❓</b>
+    		 </div>
+  		</center>
+	</footer>
+	
+	<script>
+		var div = document.getElementById("buttondiv");
+		var dialog = document.getElementById("dialog");
+		var overlay = document.getElementById("overlay");
+
+		div.addEventListener("click", function() {
+ 		 dialog.showModal();
+  		overlay.style.display = "block";
+		});
+
+		window.addEventListener("click", function(event) {
+  		if (event.target == dialog) {
+    		dialog.close();
+   		 	overlay.style.display = "none";
+  		}
+		});
+	</script>
+	
 	
 	<footer style="position: fixed; bottom: 0; left: 0;">
         <center>
-            <div class="sticky bg-zinc-200 rounded-3xl p-3 m-5 drop-shadow-md hover:bg-zinc-300">
+            <div id="buttondiv" class="sticky bg-zinc-200 rounded-3xl p-3 m-5 drop-shadow-md transition duration-300 ease-in-out hover:bg-yellow-500 hover:text-slate-50">
                <a href="/"><b>🎱 Retornar ao Pingo</b></a>
             </div>
         </center>
     </footer>
+	
+	<p class="p-7"></p>
 	
 </body>
 </html>

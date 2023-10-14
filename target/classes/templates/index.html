@@ -8,11 +8,28 @@
 
     <title>PINGO</title>
     
+    <style>
+		
+		div {
+			cursor: default;
+		}
+		
+		h1 {
+			cursor: default;
+		}
+		
+		#buttondiv {
+			cursor: pointer;
+		}
+		
+	</style>
+    
 </head>
 <body class="bg-zinc-900">
    	
     <center>
-    <h1 class="text-4xl p-5 font-extrabold text-slate-200">PINGO</h1>
+		
+   	<h1 class="text-4xl p-5 font-extrabold justify-center text-slate-200 transition duration-300 ease-in-out hover:text-slate-50">PINGO</h1>
 
 	<section class="sm:mx-[5%] md:mx-[30%]">
 		<div class="grid grid-cols-4 items-center justify-center gap-4" id="findingRandomSixteen" hx-get="/transparency/getRandom" hx-trigger="load" hx-swap="none"> </div>
@@ -25,7 +42,7 @@
             var strings = data.map(function(item) {
 				console.log(strings);
 				
-                return '<div class="aspect-square flex items-center drop-shadow-md justify-center bg-zinc-200 rounded-md hover:bg-zinc-300">' + '<b>' + '<span class="m-1">' + item.strings + '</span>' + ' </b>' + '</div>';
+                return '<div class="aspect-square flex items-center drop-shadow-md justify-center bg-zinc-200 rounded-md transition duration-300 ease-in-out hover:bg-yellow-500 hover:text-slate-50">' + '<b>' + '<span class="m-1">' + item.strings + '</span>' + ' </b>' + '</div>';
             });
             document.querySelector('#findingRandomSixteen').innerHTML = strings.join('');
             console.log(strings.join(''));
@@ -37,7 +54,7 @@
     
     <footer style="position: fixed; bottom: 0; left: 0;">
         <center>
-            <div class="sticky bg-zinc-200 rounded-3xl p-3 m-5 drop-shadow-md hover:bg-zinc-300">
+            <div id="buttondiv" class="sticky bg-zinc-200 rounded-3xl p-3 m-5 drop-shadow-md transition duration-300 ease-in-out hover:bg-yellow-500 hover:text-slate-50">
                <a href="/transparency"><b>🔎 Transparency</b></a>
             </div>
         </center>
@@ -45,7 +62,7 @@
     
     <footer style="position: fixed; bottom: 0; right: 0;">
         <center>
-            <div class="sticky bg-zinc-200 rounded-3xl p-3 m-5 drop-shadow-md hover:bg-zinc-300">
+            <div id="buttondiv" class="sticky bg-zinc-200 rounded-3xl p-3 m-5 drop-shadow-md transition duration-300 ease-in-out hover:bg-yellow-500 hover:text-slate-50	">
                 <a href="https://github.com/mirvoxtm"><b>Made with ❤️ by Mirvox</b></a>
             </div>
         </center>
